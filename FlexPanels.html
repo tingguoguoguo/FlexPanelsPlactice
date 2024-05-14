@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Flex Panels Image Gallery</title>
+  <link href="https://fonts.googleapis.com/css2?family=Acme&display=swap" rel="stylesheet">
+  <style>
+    html {
+      box-sizing: border-box;
+      background: #ffc600;
+      font-family: 'helvetica neue';
+      font-size: 20px;
+      font-weight: 200;
+    }
+
+    body {
+      margin: 0;
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: inherit;
+    }
+
+    .panels {
+      min-height: 100vh;
+      overflow: hidden;
+      display: flex;
+    }
+
+    .panel {
+      /* background: #6b0f9c; */
+      box-shadow: inset 0 0 0 5px rgba(255, 255, 255, 0.1);
+      color: white;
+      text-align: center;
+      align-items: center;
+      transition: font-size 0.7s cubic-bezier(0.61, -0.19, 0.7, -0.11),
+        flex 0.7s cubic-bezier(0.61, -0.19, 0.7, -0.11), background-image 0.5s;
+      font-size: 20px;
+      background-size: cover;
+      background-position: center;
+      flex: 1;
+      justify-content: center;
+      align-items: center;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .door1 {
+      background-image: url('https://i.pinimg.com/originals/43/9f/e4/439fe46dfac904c4a90d56d0aeb6cb05.jpg');
+    }
+
+    .door2 {
+      background-image: url('https://i.pinimg.com/originals/fa/8e/d1/fa8ed1dcb3ef5cf332842d9dd0bee18c.jpg');
+    }
+
+    .door3 {
+      background-image: url('https://i.pinimg.com/originals/b6/95/54/b69554ec7d921272661f06d97bfe896e.jpg');
+    }
+
+    .door4 {
+      background-image: url('https://i.pinimg.com/originals/c5/a2/ff/c5a2ffc2b5b263e1e979ad4d98b906cc.jpg');
+    }
+
+    .door5 {
+      background-image: url('https://i.pinimg.com/originals/ce/dc/c8/cedcc8ae3f83e7959d27bd6f465d475c.jpg');
+    }
+
+    .door6 {
+      background-image: url('https://i.pinimg.com/originals/df/59/9e/df599e4d71b9f24f1c5e2070a21c5d28.jpg');
+    }
+
+    .door7 {
+      background-image: url('https://i.pinimg.com/originals/d6/cb/af/d6cbaf2d1842d46b80e3fa2973bd5d1f.jpg');
+    }
+
+    .panel>* {
+      margin: 0;
+      width: 80%;
+      transition: transform 0.5s;
+      /* border: 1px solid red; */
+      flex: 1 0 auto;
+      justify-content: center;
+      align-items: center;
+      display: flex;
+    }
+
+    .panel>*:first-child {
+      transform: translateY(-100%);
+    }
+
+    .panel.open-active>*:first-child {
+      transform: translateY(0);
+    }
+
+    .panel>*:last-child {
+      transform: translateY(100%);
+    }
+
+    .panel.open-active>*:last-child {
+      transform: translateY(0);
+    }
+
+    .panel p {
+      text-transform: uppercase;
+      font-family: "Acme", sans-serif;
+      text-shadow: 0 0 4px rgba(0, 0, 0, 0.7), 0 0 14px rgba(0, 0, 0, 0.4);
+      font-size: 2rem;
+      ;
+    }
+
+    .panel p:nth-child(2) {
+      font-size: 3rem;
+    }
+
+    .panel.open {
+      flex: 7;
+      font-size: 40px;
+    }
+
+    button {
+      font-size: 1.5rem;
+      padding: 10px 20px;
+      background: rgb(255, 255, 255);
+      border: 3px solid white;
+      color: rgb(0, 0, 0);
+      text-transform: uppercase;
+      font-family: "Acme", sans-serif;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: rgb(199, 13, 13);
+      color: rgb(255, 255, 255);
+      border: 3px solid;
+    }
+  </style>
+</head>
+
+<body>
+  <audio id="bgAudio" src="./BOYNEXTDOOR.mp3" loop></audio>
+  <div class="panels">
+    <div class="panel door1">
+      <p>Hey</p>
+      <p>Who's there?</p>
+      <button onclick="playAudio()">Knock Knock!</button>
+      <p>BOYNEXTDOOR!</p>
+    </div>
+
+    <div class="panel door2">
+      <p>Hello!</p>
+      <p>I'm</p>
+      <p>SUNGHO</p>
+    </div>
+
+    <div class="panel door3">
+      <p>Hello!</p>
+      <p>I'm</p>
+      <p>RIWOO</p>
+    </div>
+
+
+    <div class="panel door4">
+      <p>Hello!</p>
+      <p>I'm</p>
+      <p>JAEHYUN</p>
+    </div>
+
+
+    <div class="panel door5">
+      <p>Hello!</p>
+      <p>I'm</p>
+      <p>TAESAN</p>
+    </div>
+
+
+    <div class="panel door6">
+      <p>Hello!</p>
+      <p>I'm</p>
+      <p>LEEHAN</p>
+    </div>
+
+
+    <div class="panel door7">
+      <p>Hello!</p>
+      <p>I'm</p>
+      <p>WOONHAK</p>
+    </div>
+  </div>
+  <script>
+    const panels = document.querySelectorAll('.panel');
+    const imageUrls = [
+      'https://i.pinimg.com/originals/43/9f/e4/439fe46dfac904c4a90d56d0aeb6cb05.jpg',
+      'https://i.pinimg.com/originals/01/63/36/016336291952610cb63fc97a8981d99d.jpg',
+      'https://i.pinimg.com/originals/11/70/a9/1170a95a7dcbf95eebbc468f5392078e.jpg',
+      'https://i.pinimg.com/originals/1d/b9/79/1db979405d21341078890ba211922022.jpg',
+      'https://i.pinimg.com/originals/d1/1b/dc/d11bdcb5134e59e2c9f5dd46a76f6046.jpg',
+      'https://i.pinimg.com/originals/15/0b/3f/150b3fd28d9f8d5d2f800a02e7471b19.jpg',
+      'https://i.pinimg.com/originals/62/3a/5e/623a5ec76f1ba0bd01b84c666955bad7.png'
+    ];
+
+    function playAudio() {
+      const audio = document.getElementById('bgAudio');
+      audio.play();
+    }
+
+    function toggleOpen() {
+      this.classList.toggle('open');
+      if (this.classList.contains('open')) {
+        // 展開時設定背景圖片
+        const index = Array.from(panels).indexOf(this);
+        this.style.backgroundImage = `url('${imageUrls[index]}')`;
+      } else {
+        // 收起時恢復背景圖片
+        this.style.backgroundImage = '';
+      }
+    }
+
+    function toggleActive(e) {
+      // console.log(e.propertyName);
+      if (e.propertyName.includes('flex')) {
+        this.classList.toggle('open-active');
+      }
+    }
+
+
+    panels.forEach(panel => panel.addEventListener('click', toggleOpen));
+    panels.forEach(panel => panel.addEventListener('transitionend', toggleActive));
+  </script>
+</body>
+
+</html>
